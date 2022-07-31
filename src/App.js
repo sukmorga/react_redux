@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchCustomers } from "./asyncAction/customers";
 import { addCashAction, getCashAction } from "./store/cashReduser";
 import { addCustomerAction, removeCustomerAction } from "./store/customerReduser";
 
@@ -35,11 +36,11 @@ function App() {
                 <button onClick={() => addCash(Number(prompt()))}>Пополнить счет</button>
                 <button onClick={() => getCash(Number(prompt()))}>Снять со счета</button>
                 <button onClick={() => addCustomer(prompt())}>Добавить клиента</button>
-                <button onClick={() => getCash(Number(prompt()))}>Удалить клиента</button>
+                <button onClick={() => dispatch(fetchCustomers())}>Получить клиентов из базы</button>
             </div>
             {customers.length > 0 ?
                 <div>
-                    {customers.map(customer => <div onClick={() => removeCustomer(customer)} style={{ width: 40, height: 40, border: '1px solid red' }}>{customer.name}</div>)}
+                    {customers.map(customer => <div onClick={() => removeCustomer(customer)} style={{ border: '1px solid red' }}>{customer.name}</div>)}
                 </div>
                 :
                 <div>
