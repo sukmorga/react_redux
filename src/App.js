@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCustomers } from "./asyncAction/customers";
-import { addCashAction, getCashAction } from "./store/cashReduser";
+import { addCashAction, asyncAddCashAction, getCashAction } from "./store/cashReduser";
 import { addCustomerAction, removeCustomerAction } from "./store/customerReduser";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <div className="App">
             <div style={{ fontSize: 20 }}>{cash}</div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <button onClick={() => addCash(Number(prompt()))}>Пополнить счет</button>
+                <button onClick={() => dispatch(asyncAddCashAction())}>Пополнить счет</button>
                 <button onClick={() => getCash(Number(prompt()))}>Снять со счета</button>
                 <button onClick={() => addCustomer(prompt())}>Добавить клиента</button>
                 <button onClick={() => dispatch(fetchCustomers())}>Получить клиентов из базы</button>
